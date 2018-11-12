@@ -1,13 +1,11 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
-apply from: 'https://raw.githubusercontent.com/HendraAnggrian/hendraanggrian.github.io/master/bintray.gradle'
 
 android {
-    compileSdkVersion versions.sdk.target
-    buildToolsVersion versions.buildTools
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
-        minSdkVersion versions.sdk.min
-        targetSdkVersion versions.sdk.target
+        minSdkVersion 21
+        targetSdkVersion 28
     }
     sourceSets {
         main.manifest.srcFile 'AndroidManifest.xml'
@@ -18,14 +16,5 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:recyclerview-v7:$versions.support"
-}
-
-publish {
-    userOrg = bintray.user
-    groupId = bintray.group
-    artifactId = bintray.artifact.recyclerview_expandable.id
-    publishVersion = versions.release
-    desc = bintray.artifact.recyclerview_expandable.desc
-    website = bintray.artifact.recyclerview_expandable.website
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
 }

@@ -1,9 +1,9 @@
 package com.example.recyclerview_expandable
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ import com.hendraanggrian.widget.ExpandableRecyclerView
 /**
  * @author Hendra Anggrian (hendraanggrian@gmail.com)
  */
-class ItemAdapter(layout: LinearLayoutManager) : ExpandableRecyclerView.Adapter<ItemAdapter.ViewHolder>(layout) {
+class ItemAdapter(layout: androidx.recyclerview.widget.LinearLayoutManager) : ExpandableRecyclerView.Adapter<ItemAdapter.ViewHolder>(layout) {
 
     private var context: Context? = null
     private val items = arrayOf(
@@ -43,7 +43,7 @@ class ItemAdapter(layout: LinearLayoutManager) : ExpandableRecyclerView.Adapter<
     override fun onBindViewHolder(holder: ItemAdapter.ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
         val (drawable, title) = items[position]
-        holder.imageView.setImageDrawable(ContextCompat.getDrawable(context, drawable))
+        holder.imageView.setImageDrawable(ContextCompat.getDrawable(this!!.context!!, drawable))
         holder.textView.text = title
         holder.button.setOnClickListener { Toast.makeText(context, "Clicked!", Toast.LENGTH_SHORT).show() }
     }
@@ -52,7 +52,7 @@ class ItemAdapter(layout: LinearLayoutManager) : ExpandableRecyclerView.Adapter<
         return items.size
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         val item: ExpandableItem = itemView.findViewById(R.id.row) as ExpandableItem
         val imageView: ImageView = item.headerLayout.findViewById(R.id.imageView) as ImageView
         val textView: TextView = item.headerLayout.findViewById(R.id.textView) as TextView
